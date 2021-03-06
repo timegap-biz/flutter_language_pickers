@@ -61,7 +61,7 @@ class MyAlertDialog<T> extends StatelessWidget {
   /// The (optional) set of actions that are displayed at the bottom of the
   /// dialog.
   ///
-  /// Typically this is a list of [TextButton] widgets.
+  /// Typically this is a list of [FlatButton] widgets.
   ///
   /// These widgets will be wrapped in a [ButtonBar], which introduces 8 pixels
   /// of padding on each side.
@@ -105,7 +105,7 @@ class MyAlertDialog<T> extends StatelessWidget {
             new EdgeInsets.fromLTRB(
                 24.0, 24.0, 24.0, isDividerEnabled ? 20.0 : 0.0),
         child: new DefaultTextStyle(
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.title,
           child: new Semantics(child: title, namesRoute: true),
         ),
       ));
@@ -127,7 +127,7 @@ class MyAlertDialog<T> extends StatelessWidget {
         child: new Padding(
           padding: contentPadding,
           child: new DefaultTextStyle(
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.subhead,
             child: content,
           ),
         ),
@@ -136,11 +136,11 @@ class MyAlertDialog<T> extends StatelessWidget {
 
     if (actions != null) {
       if (isDividerEnabled) children.add(divider);
-      children.add(new ButtonTheme.fromButtonThemeData(
-          data: ButtonTheme.of(context),
-          child: ButtonBar(
-            children: actions,
-          )));
+      children.add(new ButtonTheme.bar(
+        child: new ButtonBar(
+          children: actions,
+        ),
+      ));
     }
 
     Widget dialogChild = new Column(
