@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context) => Theme(
             data: Theme.of(context).copyWith(primaryColor: Colors.pink),
             child: LanguagePickerDialog(
+                semanticLabel: "languageTitle",
                 titlePadding: EdgeInsets.all(8.0),
                 searchCursorColor: Colors.pinkAccent,
                 searchInputDecoration: InputDecoration(hintText: 'Search...'),
@@ -81,12 +82,18 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (BuildContext context) {
         return LanguagePickerCupertino(
+          scrollController: FixedExtentScrollController(initialItem: 0),
+          magnification: 1.1,
+          backgroundColor: Colors.white,
+          offAxisFraction: 1,
+          useMagnifier: true,
+          diameterRatio: 1.1,
           pickerSheetHeight: 200.0,
           onValuePicked: (Language language) => setState(() {
-                _selectedCupertinoLanguage = language;
-                print(_selectedCupertinoLanguage.name);
-                print(_selectedCupertinoLanguage.isoCode);
-              }),
+            _selectedCupertinoLanguage = language;
+            print(_selectedCupertinoLanguage.name);
+            print(_selectedCupertinoLanguage.isoCode);
+          }),
         );
       });
 

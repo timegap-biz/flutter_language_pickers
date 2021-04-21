@@ -13,7 +13,7 @@ class LanguagePickerCupertino extends StatefulWidget {
 
   ///Callback that is called with selected item of type Language which returns a
   ///Widget to build list view item inside dialog
-  final ItemBuilder itemBuilder;
+  final ItemBuilder? itemBuilder;
 
   ///The [itemExtent] of [CupertinoPicker]
   /// The uniform height of all children.
@@ -26,7 +26,7 @@ class LanguagePickerCupertino extends StatefulWidget {
   final double pickerSheetHeight;
 
   ///The TextStyle that is applied to Text widgets inside item
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   /// Relative ratio between this picker's height and the simulated cylinder's diameter.
   ///
@@ -60,30 +60,31 @@ class LanguagePickerCupertino extends StatefulWidget {
   final FixedExtentScrollController scrollController;
 
   /// List of languages available in this picker.
-  final List<Map<String, String>> languagesList;
+  final List<Map<String, String>>? languagesList;
 
   const LanguagePickerCupertino({
-    Key key,
-    this.onValuePicked,
+    Key? key,
+    required this.onValuePicked,
     this.itemBuilder,
     this.pickerItemHeight = defaultPickerItemHeight,
     this.pickerSheetHeight = defaultPickerSheetHeight,
     this.textStyle,
-    this.diameterRatio,
-    this.backgroundColor,
-    this.offAxisFraction,
-    this.useMagnifier,
-    this.magnification,
-    this.scrollController,
+    required this.diameterRatio,
+    required this.backgroundColor,
+    required this.offAxisFraction,
+    required this.useMagnifier,
+    required this.magnification,
+    required this.scrollController,
     this.languagesList,
   }) : super(key: key);
 
   @override
-  _CupertinoLanguagePickerState createState() => _CupertinoLanguagePickerState();
+  _CupertinoLanguagePickerState createState() =>
+      _CupertinoLanguagePickerState();
 }
 
 class _CupertinoLanguagePickerState extends State<LanguagePickerCupertino> {
-  List<Language> _allLanguages;
+  late List<Language> _allLanguages;
 
   @override
   void initState() {
@@ -124,7 +125,7 @@ class _CupertinoLanguagePickerState extends State<LanguagePickerCupertino> {
       backgroundColor: CupertinoColors.white,
       children: _allLanguages
           .map<Widget>((Language language) => widget.itemBuilder != null
-              ? widget.itemBuilder(language)
+              ? widget.itemBuilder!(language)
               : _buildDefaultItem(language))
           .toList(),
       onSelectedItemChanged: (int index) {
@@ -140,7 +141,7 @@ class _CupertinoLanguagePickerState extends State<LanguagePickerCupertino> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           SizedBox(width: 8.0),
-          Flexible(child: Text(language.name))
+          Flexible(child: Text(language.name!))
         ],
       ),
     );

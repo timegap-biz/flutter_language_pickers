@@ -2,11 +2,12 @@ import 'package:language_pickers/languages.dart';
 
 class LanguagePickerUtils {
   static Language getLanguageByIsoCode(String isoCode) {
-    final _languages = defaultLanguagesList.map((item) => Language.fromMap(item)).toList();
+    final _languages =
+        defaultLanguagesList.map((item) => Language.fromMap(item)).toList();
     try {
       return _languages
           .where((language) =>
-              language.isoCode.toLowerCase() == isoCode.toLowerCase())
+              language.isoCode!.toLowerCase() == isoCode.toLowerCase())
           .toList()[0];
     } catch (error) {
       throw Exception("The initialValue provided is not a supported iso code!");
