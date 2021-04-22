@@ -35,7 +35,7 @@ class LanguagePickerCupertino extends StatefulWidget {
   /// For more details, see [ListWheelScrollView.diameterRatio].
   ///
   /// Must not be null and defaults to `1.1` to visually mimic iOS.
-  final double diameterRatio;
+  final double? diameterRatio;
 
   /// Background color behind the children.
   ///
@@ -43,21 +43,21 @@ class LanguagePickerCupertino extends StatefulWidget {
   ///
   /// This can be set to null to disable the background painting entirely; this
   /// is mildly more efficient than using [Colors.transparent].
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// {@macro flutter.rendering.wheelList.offAxisFraction}
-  final double offAxisFraction;
+  final double? offAxisFraction;
 
   /// {@macro flutter.rendering.wheelList.useMagnifier}
-  final bool useMagnifier;
+  final bool? useMagnifier;
 
   /// {@macro flutter.rendering.wheelList.magnification}
-  final double magnification;
+  final double? magnification;
 
   /// A [FixedExtentScrollController] to read and control the current item.
   ///
   /// If null, an implicit one will be created internally.
-  final FixedExtentScrollController scrollController;
+  final FixedExtentScrollController? scrollController;
 
   /// List of languages available in this picker.
   final List<Map<String, String>>? languagesList;
@@ -69,12 +69,12 @@ class LanguagePickerCupertino extends StatefulWidget {
     this.pickerItemHeight = defaultPickerItemHeight,
     this.pickerSheetHeight = defaultPickerSheetHeight,
     this.textStyle,
-    required this.diameterRatio,
-    required this.backgroundColor,
-    required this.offAxisFraction,
-    required this.useMagnifier,
-    required this.magnification,
-    required this.scrollController,
+    this.diameterRatio,
+    this.backgroundColor,
+    this.offAxisFraction,
+    this.useMagnifier,
+    this.magnification,
+    this.scrollController,
     this.languagesList,
   }) : super(key: key);
 
